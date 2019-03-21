@@ -19,3 +19,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /rock_tasks_api/config/master.key
+
+#ignore documentarion folder
+/rock_tasks_api/doc/*
