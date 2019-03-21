@@ -1,4 +1,4 @@
-# app/controllers/concerns/exception_handler.rb
+# manage custom exceptions 
 module ExceptionHandler
   # provides the more graceful `included` method
   extend ActiveSupport::Concern

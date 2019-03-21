@@ -1,3 +1,11 @@
+#=== Attributes
+#
+# :id - pk integer
+# :name - string not null
+# :email - string not null
+#=== Associoations
+#
+# :role - belongs_to - not null
 class Member < ApplicationRecord
   #associations
   belongs_to :role
