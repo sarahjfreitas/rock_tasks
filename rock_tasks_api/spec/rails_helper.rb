@@ -28,7 +28,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true  
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.include RequestSpecHelper, type: :request
+  #config.include RequestSpecHelper, type: :request
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
