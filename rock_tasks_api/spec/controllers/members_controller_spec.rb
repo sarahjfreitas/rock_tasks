@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe MembersController, type: :controller do
 
-  let(:valid_attributes) { { name: 'Teste', email: 'teste@email.com' } }
+  let!(:roles) { create_list(:role, 10) }
+  let!(:members) { create_list(:member, 10) }
+  let(:valid_attributes) { { name: 'Teste', email: 'teste@email.com', role_id: Role.all.sample.id } }
   let(:invalid_attributes) { }
   let(:valid_session) { {} }
 

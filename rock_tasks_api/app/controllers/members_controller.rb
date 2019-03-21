@@ -4,17 +4,17 @@ class MembersController < ApplicationController
   # GET /members
   def index
     @members = Member.all
-    jeson_response(@members)
+    json_response(@members)
   end
 
   # GET /members/1
   def show
-    jeson_response(@member)
+    json_response(@member)
   end
 
   # POST /members
   def create
-    @member = Member.create!(todo_params)
+    @member = Member.create!(member_params)
     json_response(@member, :created)
   end
 
