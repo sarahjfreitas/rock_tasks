@@ -4,37 +4,30 @@ class MembersController < ApplicationController
   # GET /members
   def index
     @members = Member.all
-    render json: @members
+    jeson_response(@members)
   end
 
   # GET /members/1
   def show
-    render json: @member
+    jeson_response(@member)
   end
 
   # POST /members
   def create
-    @member = Member.new(member_params)
-
-    if @member.save
-      render json: @member, status: :created, location: @member
-    else
-      render json: @member.errors, status: :unprocessable_entity
-    end
+    @member = Member.create!(todo_params)
+    json_response(@member, :created)
   end
 
   # PATCH/PUT /members/1
   def update
-    if @member.update(member_params)
-      render json: @member
-    else
-      render json: @member.errors, status: :unprocessable_entity
-    end
+    @member.update(member_params)
+    json_response(@member, :updated)
   end
 
   # DELETE /members/1
   def destroy
     @member.destroy
+    head :no_content
   end
 
   private
