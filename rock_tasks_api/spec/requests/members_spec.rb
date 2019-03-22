@@ -54,11 +54,9 @@ RSpec.describe "Members", type: :request do
 
   # Test suite for POST /member
   describe 'POST /member' do
-    # valid
-    let(:valid_attributes) { {member: { name: 'Teste', email: 'teste@email.com' } }}
 
     context 'when the request is valid' do
-      before { post '/todos', params: valid_attributes }
+      before { post '/members', params: { member: { name: 'Nome', email: 'email@email.com', role_id: 1 } }  }
 
       it 'create member check name' do
         expect(json['name']).to eq('Nome')
@@ -74,29 +72,27 @@ RSpec.describe "Members", type: :request do
     end
 
     context 'when the name is blank' do
-      before { post '/todos', params: { member: {email: 'email@email.com'} } }
+      before { post '/members', params: { member: {email: 'email@email.com'} } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns error message' do
-        expect(response.body)
-          .to match(/Validation failed: Name can't be blank/)
+        expect(response.body).to match(/Name can't be blank/)
       end
 
     end
 
     context 'when the email is blank' do
-      before { post '/todos', params: { member: {name: 'Nome'} } }
+      before { post '/members', params: { member: {name: 'Nome'} } }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
 
       it 'returns error message' do
-        expect(response.body)
-          .to match(/Validation failed: Email can't be blank/)
+        expect(response.body).to match(/Email can't be blank/)
       end
 
     end
@@ -105,17 +101,18 @@ RSpec.describe "Members", type: :request do
 
   #Test suite for PUT /members/:id
   describe 'PUT /members/:id' do
-    let(:valid_attributes) { {member:{ name: 'Maria', email: 'maria@maria.com' }} }
+    let(:valid_attributes) { { member: { name: 'Maria', email: 'maria@maria.com' } } }
 
     context 'when the record exists' do
       before { put "/members/#{member_id}", params: valid_attributes }
 
-      it 'updates the record' do
-        expect(response.body).to be_empty
+      it 'returns the member' do
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(member_id)
       end
 
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
       end
 
       it 'update member check name' do

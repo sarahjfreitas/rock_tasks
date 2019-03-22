@@ -24,7 +24,7 @@ class MembersController < ApplicationController
   # return created member
   def create
     @member = Member.create!(member_params)
-    json_response(@member, :created)
+    json_response(@member, :created, member_url(@member) )
   end
 
   # PATCH/PUT /members/1
@@ -36,7 +36,7 @@ class MembersController < ApplicationController
   # return updated member
   def update
     @member.update(member_params)
-    json_response(@member, :updated)
+    json_response(@member)
   end
 
   # DELETE /members/1

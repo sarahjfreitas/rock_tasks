@@ -5,7 +5,7 @@ RSpec.describe MembersController, type: :controller do
   let!(:roles) { create_list(:role, 10) }
   let!(:members) { create_list(:member, 10) }
   let(:valid_attributes) { { name: 'Teste', email: 'teste@email.com', role_id: Role.all.sample.id } }
-  let(:invalid_attributes) { }
+  let(:invalid_attributes) { {name: 'teste'} } 
   let(:valid_session) { {} }
 
   describe "GET #index" do
@@ -33,7 +33,6 @@ RSpec.describe MembersController, type: :controller do
       end
 
       it "renders a JSON response with the new member" do
-
         post :create, params: {member: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
@@ -67,7 +66,7 @@ RSpec.describe MembersController, type: :controller do
       it "renders a JSON response with the member" do
         member = Member.create! valid_attributes
 
-        put :update, params: {id: member.to_param, member: valid_attributes}, session: valid_session
+        put :update, params: {id: member.to_param, member: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
@@ -77,8 +76,8 @@ RSpec.describe MembersController, type: :controller do
       it "renders a JSON response with errors for the member" do
         member = Member.create! valid_attributes
 
-        put :update, params: {id: member.to_param, member: invalid_attributes}, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
+        put :update, params: {id: member.to_param, member: invalid_attributes }, session: valid_session
+        expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
