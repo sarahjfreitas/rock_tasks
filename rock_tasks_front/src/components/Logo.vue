@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .logo_container  {
   position: relative;
   width: 40px;

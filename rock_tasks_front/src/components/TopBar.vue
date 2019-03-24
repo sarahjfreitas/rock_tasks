@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="tab_nav">
-      <app-header></app-header>
+      <app-header :title="pageTitle" :currentUser="currentUser"></app-header>
       <app-menu-tabs></app-menu-tabs>
     </div>
     <div>
@@ -22,68 +22,22 @@
       AppMenuTabs : MenuTabs,
       AppSearchBar : SearchBar,
       AppActionsBar : ActionsBar
+    },
+    data() {
+      return {
+        pageTitle : 'Setup',
+        currentUser: {
+          name: 'Carlos'
+        }
+      }
     }
   }
 </script>
 
-<style>
+<style scoped>
 
 #tab_nav {
-  height: 200px;
-}
-
-#tab_nav_top {
-  height: 128px;
-}
-#title_bar {
-  padding: 32px;
-}
-#title_bar .title_content {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-
-  color: #607D8B;
-
-}
-#title_bar .user_info_container {
-  position: fixed;
-  right: 32px;
-  top: 32px;
-}
-
-#title_bar .user_info_container .user_info_button {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  left: 1384px;
-  top: 32px;
-}
-
-#title_bar .user_info_container .user_info_button .icon {
-  width: 8px;
-  height: 4px;
-  margin: auto;
-
-  background: #455A64;
-  mix-blend-mode: normal;
-  opacity: 0.38;
-}
-
-#title_bar .user_info_container .user_info_label {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 24px;
-  text-align: right;
-
-  color: #455A64;
-
-  mix-blend-mode: normal;
-  opacity: 0.54;
+  margin-bottom: 32px;
 }
 
 </style>

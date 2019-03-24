@@ -16,7 +16,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 #side_bar {
   position: fixed;
   width: 104px;
