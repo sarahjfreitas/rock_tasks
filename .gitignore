@@ -22,3 +22,10 @@
 
 #ignore documentarion folder
 /rock_tasks_api/doc/*
+
+
+/rock_tasks_front/node_modules/
+/rock_tasks_front/dist/
+/rock_tasks_front/npm-debug.log
+/rock_tasks_front/yarn-error.log
+
