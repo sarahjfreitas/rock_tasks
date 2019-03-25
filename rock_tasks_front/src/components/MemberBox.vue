@@ -20,9 +20,10 @@
   }
   .memberInfoBox{    
     width: 300px;
-    height: 229px;
     background: rgba(255, 255, 255, 0.4);
     border-radius: 3px;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.04), 1px 1px 1px rgba(0, 0, 0, 0.08);
+    padding-bottom: 32px;
   }
   .nameLabel{
     font-family: Roboto;

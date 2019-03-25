@@ -3,7 +3,7 @@
     <app-side-bar :menuItens="menuItens"></app-side-bar>
     <div id="main_container" >
       <app-top-bar :menuItens="subMenuItens[this.activeMenu]" :pageTitle="activeMenu"></app-top-bar>
-      <app-setup v-if="menuItens[2].active"></app-setup>
+      <app-setup v-if="menuItens[2].active" :menuItens="subMenuItens['Setup']"></app-setup>
     </div>    
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-members></app-members>
+    <app-members v-if="activeMenu == 'Minha Equipe'"></app-members>
   </div>
 </template>
 
@@ -11,6 +11,16 @@
   export default {    
     components: {
       AppMembers : Members
+    },
+    props: {
+      'menuItens' : Array
+    },
+    computed: {
+      activeMenu() {
+        return this.menuItens.filter(function (mitem) {
+          return mitem.active == true;
+        })[0].title;
+      }
     }
   }
 </script>

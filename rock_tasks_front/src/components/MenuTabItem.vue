@@ -1,5 +1,5 @@
 <template>
-  <div class="menu_item" :class="{ active: item.active}">
+  <div class="menu_item" :class="{ active: item.active}" @click="fnTabCLick(item.id)">
     <span>{{item.title}}</span>
   </div>
 </template>
@@ -41,6 +41,9 @@
 
 <script>
 export default {
-  props: ['item']
+  props: {
+   'item' : Object,
+   'fnTabCLick' : Function
+  }
 }
 </script>

@@ -14,19 +14,19 @@
             <div class="">
               <div class="col-md-12">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Nome">
+                  <input type="text" class="form-control" placeholder="Nome" v-model="newMember.name">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="E-mail">
+                  <input type="text" class="form-control" placeholder="E-mail" v-model="newMember.email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Função de trabalho">
+                  <input type="text" class="form-control" placeholder="Função de trabalho" v-model="newMember.job">
+                </div>
+                <div class="submitContainer">
+                  <button type="button" class="btn btn-primary" @click="createMember()">Criar Membro da Equipe</button>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Criar Membro da Equipe</button>
           </div>
         </div>
       </div>
@@ -36,6 +36,11 @@
 
 <script>
   import MemberBox from './MemberBox';
+  const instance = axios.create({
+    baseURL: 'https://some-domain.com/api/',
+    timeout: 1000,
+    headers: {'X-Custom-Header': 'foobar'}
+  });
   export default {
     components: {
       AppMemberBox : MemberBox
@@ -47,10 +52,25 @@
           {id: 2, name: 'Bruno Pontes', email: 'bruno.pontes@rockcontent.com' },
           {id: 3, name: 'Carla Alvez Martins', email: 'carla@rockcontent.com' },
           {id: 4, name: 'Daniel Henrique Corrêa', email: 'daniel.henrique@rockcontent.com' }
-        ]
+        ],
+        newMember: {
+          name: '',
+          email: '',
+          job: ''
+        }
       };  
+    },
+    methods: {
+      createMember() {
+        this.members.push({id: 0, name: this.newMember.name, email: this.newMember.email});
+        this.newMember.name = '';
+        this.newMember.email = '';
+        this.newMember.job = '';
+        $('#modalMember').modal('hide');
+      }
     }
   }
+  
 </script>
 
 <style scoped>
@@ -103,5 +123,9 @@ input{
 }
 .close:hover{  
   opacity: 1 !important;
+}
+.submitContainer{
+  text-align: right;
+  margin-top: 30px;
 }
 </style>

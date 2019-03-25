@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-menu-tab-item v-for="mi in menuItens" :key="mi.id" :item="mi"></app-menu-tab-item>
+    <app-menu-tab-item v-for="mi in menuItens" :key="mi.id" :item="mi" :fnTabCLick="changeActiveSubMenu"></app-menu-tab-item>
   </div>
 </template>
 
@@ -20,6 +20,17 @@
     },
     props: {
       'menuItens' : Array
+    },
+    methods: {
+      changeActiveSubMenu(idItem){
+        var vm = this;
+        $.each(vm.menuItens, function(i,v){
+          if(v.id == idItem)
+            v.active = true;
+          else
+            v.active = false;
+        });
+      }
     }
   }
 </script>
