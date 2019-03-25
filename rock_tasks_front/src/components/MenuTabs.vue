@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-menu-tab-item v-for="m in menuTabItemsData" :key="m.id" :item="m"></app-menu-tab-item>
+    <app-menu-tab-item v-for="mi in menuItens" :key="mi.id" :item="mi"></app-menu-tab-item>
   </div>
 </template>
 
@@ -18,16 +18,8 @@
     components: {
       AppMenuTabItem : MenuTabItem
     },
-    data() {
-      return {
-        menuTabItemsData: [
-          {id: 1, name: 'minha equipe', active: true},
-          {id: 2, name: 'tab item', active: false},
-          {id: 3, name: 'tab item', active: false},
-          {id: 4, name: 'tab item', active: false},
-          {id: 5, name: 'tab item', active: false},
-        ]
-      }
+    props: {
+      'menuItens' : Array
     }
   }
 </script>

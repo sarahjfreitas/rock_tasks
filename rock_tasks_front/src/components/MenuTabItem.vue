@@ -1,6 +1,6 @@
 <template>
   <div class="menu_item" :class="{ active: item.active}">
-    <span>{{item.name}}</span>
+    <span>{{item.title}}</span>
   </div>
 </template>
 

@@ -1,6 +1,9 @@
 <template>
-  <div class="memberBox col-md-3">
+  <div class="memberBox">
     <div class="memberInfoBox">      
+      <div class="avatar_container">
+        <img src="../assets/default_avatar.png">
+      </div>
       <span class="nameLabel">{{member.name}}</span>
       <span class="emailLabel">{{member.email}}</span>
     </div>
@@ -13,10 +16,13 @@
     margin: 0;
     padding: 12px;
     text-align: center;
+    background: #F2F2F2;
   }
   .memberInfoBox{    
-    background: #fff;
-    height: 150px;
+    width: 300px;
+    height: 229px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
   }
   .nameLabel{
     font-family: Roboto;
@@ -39,6 +45,19 @@
     mix-blend-mode: normal;
     opacity: 0.54;
     display: block;
+  }
+  .avatar_container{
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    margin-top: 24px; 
+    border-radius: 100%;
+    overflow:hidden;    
+    display: inline-block;
+  }
+  .avatar_container img{
+    width: 64px;
+    height: 64px;
   }
 </style>
 

@@ -2,11 +2,11 @@
   <div>
     <div id="tab_nav">
       <app-header :title="pageTitle" :currentUser="currentUser"></app-header>
-      <app-menu-tabs></app-menu-tabs>
+      <app-menu-tabs :menuItens="menuItens"></app-menu-tabs>
     </div>
     <div>
       <app-search-bar></app-search-bar>
-      <app-actions-bar></app-actions-bar>
+      <app-actions-bar v-if="pageTitle == 'Setup' "></app-actions-bar>
     </div>
   </div>
 </template>
@@ -23,9 +23,12 @@
       AppSearchBar : SearchBar,
       AppActionsBar : ActionsBar
     },
+    props: {
+      'menuItens' : Array,
+      'pageTitle' : String
+    },
     data() {
       return {
-        pageTitle : 'Setup',
         currentUser: {
           name: 'Carlos'
         }
@@ -38,6 +41,9 @@
 
 #tab_nav {
   margin-bottom: 32px;
+  width: 100%;
+  background: rgba(38, 50, 56, 0.02);
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.04);
 }
 
 </style>

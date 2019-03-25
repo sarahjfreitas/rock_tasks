@@ -11,33 +11,33 @@
   </div>
 </template>
 
-<style scoped>
-  input{
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
-    color: #90A4AE;
-    border: 0;
-    background-color: inherit;
-  }
-  .input-group {    
-    border-bottom: 1px solid #ced4da;
-  }
-  .input-group-prepend{
-    border: 0;
-  }
-  .input-group-text{
-    border: 0;
-    background: none;
-  }
-  .fa{    
-    opacity: 0.5;
-  }
-  .row{
-    margin: 0;
-  }
+<style scoped>  
+input{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #90A4AE;
+  border: 0;
+  background-color: inherit;
+}
+.input-group {    
+  border-bottom: 1px solid #ced4da;
+}
+.input-group-prepend{
+  border: 0;
+}
+.input-group-text{
+  border: 0;
+  background: none;
+}
+.fa{    
+  opacity: 0.5;
+}
+.row{
+  margin: 0;
+}
 </style>
 
 <script >

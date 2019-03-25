@@ -1,5 +1,5 @@
 <template>
-  <div class="menu_item">
+  <div class="menu_item" @click="menuItemFn(item.id)">
     <div class="menu_icon_container"><div class="menu_icon"></div></div>
     <div class="label_container"><div>{{ item.title }}</div></div>
   </div>
@@ -7,7 +7,10 @@
 
 <script>
 export default {
-  props: [ 'item' ]
+  props:  {
+    'item' : Object,
+    'menuItemFn' : Function
+  } 
 }
 </script>
 
