@@ -20,7 +20,9 @@
                   <input type="text" class="form-control" placeholder="E-mail" v-model="newMember.email">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Função de trabalho" v-model="newMember.job">
+                  <select class="form-control" placeholder="Função de trabalho" v-model="newMember.role_id">
+                    <option v-for="j in roles" :key="j.id" :value="j.id">{{j.name}}</option>
+                  </select>
                 </div>
                 <div class="submitContainer">
                   <button type="button" class="btn btn-primary" @click="createMember()">Criar Membro da Equipe</button>
@@ -36,37 +38,73 @@
 
 <script>
   import MemberBox from './MemberBox';
-  const instance = axios.create({
-    baseURL: 'https://some-domain.com/api/',
-    timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar'}
-  });
   export default {
     components: {
       AppMemberBox : MemberBox
     },
     data(){
       return {
-        members: [
-          {id: 1, name: 'Aline Costa de Oliveira', email: 'aline.costa@rockcontent.com' },
-          {id: 2, name: 'Bruno Pontes', email: 'bruno.pontes@rockcontent.com' },
-          {id: 3, name: 'Carla Alvez Martins', email: 'carla@rockcontent.com' },
-          {id: 4, name: 'Daniel Henrique Corrêa', email: 'daniel.henrique@rockcontent.com' }
-        ],
-        newMember: {
-          name: '',
-          email: '',
-          job: ''
-        }
+        members: [],
+        newMember: {name: '',email: '',role_id: ''  },
+        token: '',
+        roles: [],
+        path: 'http://localhost:3000/'
       };  
     },
+    computed: {
+      headers() {
+        return {
+          headers: {'Authorization' : this.token }
+        };
+      }
+    },
+    mounted(){
+      this.authenticate();
+    },
     methods: {
+      authenticate(){
+        this.$http.post(this.path + 'authenticate',{
+          email: 'admin@email.com', password: '123456'
+        }).then(response => {
+          this.token = response.body.auth_token;
+          console.log(this.token);
+          this.listJobs();
+          this.listMembers();
+        }, error => {
+          console.log(error);
+        });
+      },
+      listJobs(){
+        this.$http.get(this.path + 'roles', this.headers)
+        .then(response => {
+          this.roles = response.body;
+        }, error => {
+          console.log(error);
+        });
+      },
+      listMembers(){
+        this.$http.get(this.path + 'members', this.headers)
+        .then(response => {
+          this.members = response.body;
+        }, error => {
+          console.log(error);
+        });
+      },
       createMember() {
-        this.members.push({id: 0, name: this.newMember.name, email: this.newMember.email});
-        this.newMember.name = '';
-        this.newMember.email = '';
-        this.newMember.job = '';
-        $('#modalMember').modal('hide');
+        this.$http.post(this.path + 'members',{member: this.newMember},this.headers).then(response => {
+          this.members.push({id: 0, name: this.newMember.name, email: this.newMember.email});
+          this.newMember = {name: '',email: '',role_id: ''  }
+          $('#modalMember').modal('hide');
+        }, error => { console.log(error); });
+      },
+      testeHttp(){
+        this.$http.post(this.path + 'members',{
+          headers: this.headers
+        }).then(response => {
+          console.log(response.body);
+        }, error => {
+          console.log(error);
+        });
       }
     }
   }
