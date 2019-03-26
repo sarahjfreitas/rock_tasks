@@ -14,9 +14,10 @@ class Member < ApplicationRecord
     :presence => true, 
     :length => {:minimum => 3, :maximum => 254},
     :uniqueness => true,
-    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :multiline => true}
+    
 
-  validates :name
+  validates :name,
     :presence => true, 
     :length => {:minimum => 3, :maximum => 254}
 

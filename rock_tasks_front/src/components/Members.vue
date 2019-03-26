@@ -15,17 +15,20 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Nome" v-model="newMember.name">
+                  <div class="invalid-feedback" v-if="!name_valid">Preencha o nome</div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="E-mail" v-model="newMember.email">
+                  <input type="email" class="form-control" placeholder="E-mail" v-model="newMember.email">
+                  <div class="invalid-feedback" v-if="!email_valid">E-mail inválido</div>
                 </div>
                 <div class="form-group">
                   <select class="form-control" placeholder="Função de trabalho" v-model="newMember.role_id">
                     <option v-for="j in roles" :key="j.id" :value="j.id">{{j.name}}</option>
                   </select>
+                  <div class="invalid-feedback" v-if="!role_valid">Selecione a função</div>
                 </div>
                 <div class="submitContainer">
-                  <button type="button" class="btn btn-primary" @click="createMember()">Criar Membro da Equipe</button>
+                  <button type="button" class="btn btn-primary" @click="createMember()" >Criar Membro da Equipe</button>
                 </div>
               </div>
             </div>
@@ -52,10 +55,19 @@
       };  
     },
     computed: {
-      headers() {
+      headers(){
         return {
           headers: {'Authorization' : this.token }
         };
+      },
+      name_invalid(){
+        return this.newMember.name.length == 0;
+      },
+      role_invalid(){
+        return this.newMember.role_id.length == 0;
+      },
+      email_invalid(){
+        return ((this.newMember.email.length == 0) && (true) );
       }
     },
     mounted(){
@@ -67,9 +79,9 @@
           email: 'admin@email.com', password: '123456'
         }).then(response => {
           this.token = response.body.auth_token;
-          console.log(this.token);
           this.listJobs();
           this.listMembers();
+          
         }, error => {
           console.log(error);
         });
@@ -91,20 +103,13 @@
         });
       },
       createMember() {
-        this.$http.post(this.path + 'members',{member: this.newMember},this.headers).then(response => {
-          this.members.push({id: 0, name: this.newMember.name, email: this.newMember.email});
-          this.newMember = {name: '',email: '',role_id: ''  }
-          $('#modalMember').modal('hide');
-        }, error => { console.log(error); });
-      },
-      testeHttp(){
-        this.$http.post(this.path + 'members',{
-          headers: this.headers
-        }).then(response => {
-          console.log(response.body);
-        }, error => {
-          console.log(error);
-        });
+        if(!this.email_invalid && !this.name_invalid && !this.role_invalid){
+          this.$http.post(this.path + 'members',{member: this.newMember},this.headers).then(response => {
+            this.listMembers();
+            this.newMember = {name: '',email: '',role_id: ''  }
+            $('#modalMember').modal('hide');
+          }, error => { console.log(error); });
+        }
       }
     }
   }
@@ -138,7 +143,7 @@
   mix-blend-mode: normal;
   opacity: 0.38;
 }
-input{
+input,select{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
