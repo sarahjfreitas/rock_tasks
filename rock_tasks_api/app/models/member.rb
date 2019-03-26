@@ -10,6 +10,15 @@ class Member < ApplicationRecord
   #associations
   belongs_to :role
 
-  #validations
-  validates_presence_of :name, :email, :role_id
+  validates :email, 
+    :presence => true, 
+    :length => {:minimum => 3, :maximum => 254},
+    :uniqueness => true,
+    :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+
+  validates :name
+    :presence => true, 
+    :length => {:minimum => 3, :maximum => 254}
+
+  validates :role_id, :presence => true
 end
