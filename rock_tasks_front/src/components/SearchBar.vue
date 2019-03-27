@@ -12,7 +12,7 @@
 </template>
 
 <style scoped>  
-input{
+input, input:focus{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;

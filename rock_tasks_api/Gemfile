@@ -27,9 +27,20 @@ group :test do
   gem 'database_cleaner'
 end
 
-#gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+#access to postgres
+gem 'pg'
+
+#generate documentation
 gem 'sdoc'
+
+#manage secure password
 gem 'bcrypt', '~> 3.1.7'
+
+#encode and decode token
 gem 'jwt'
+
+#call to authorization and authentication
 gem 'simple_command'
+
+#midware to configure headers to enable cross request
 gem 'rack-cors'

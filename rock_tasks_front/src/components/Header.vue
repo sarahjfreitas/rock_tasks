@@ -3,7 +3,7 @@
     <div id="title_bar">
       <span class="title_content">{{title}}</span>
       <span class="user_info_container">
-        <span class="user_info_label">Olá, {{currentUser.name}}</span>
+        <span class="user_info_label">Olá, {{currentUser.name}} <span class="fa fa-caret-down"></span></span>
         <span class="user_info_button"><span class="icon"></span></span>
       </span>
     </div>

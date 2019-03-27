@@ -30,7 +30,7 @@
     data() {
       return {
         currentUser: {
-          name: 'Carlos'
+          name: 'Admin'
         }
       }
     }

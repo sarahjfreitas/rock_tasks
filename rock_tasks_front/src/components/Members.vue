@@ -22,13 +22,14 @@
                   <div class="invalid-feedback">E-mail inválido</div>
                 </div>
                 <div class="form-group">
-                  <select class="form-control" placeholder="Função de trabalho" v-model="newMember.role_id" :class="{'is-invalid': role_invalid}"  @input="validate_role">
+                  <select class="form-control" v-model="newMember.role_id" :class="{'is-invalid': role_invalid}"  @input="validate_role">
+                    <option value="">Função de trabalho</option>
                     <option v-for="j in roles" :key="j.id" :value="j.id">{{j.name}}</option>
                   </select>
                   <div class="invalid-feedback">Selecione a função</div>
                 </div>
                 <div class="submitContainer">
-                  <button type="button" class="btn btn-primary" @click="submitMemberForm()">Criar Membro da Equipe</button>
+                  <button type="button" class="btn btn_primary_custom" @click="submitMemberForm()">Criar Membro da Equipe</button>
                 </div>
               </div>
             </div>
@@ -42,23 +43,23 @@
 <script>
   import MemberBox from './MemberBox';
   import 'vuejs-noty/dist/vuejs-noty.css'
-/*
-// Basic alert
-this.$noty.show("Hello world!")
+  /*
+  // Basic alert
+  this.$noty.show("Hello world!")
 
-// Success notification
-this.$noty.success("Your profile has been saved!")
+  // Success notification
+  this.$noty.success("Your profile has been saved!")
 
-// Error message
-this.$noty.error("Oops, something went wrong!")
+  // Error message
+  this.$noty.error("Oops, something went wrong!")
 
-// Warning
-this.$noty.warning("Please review your information.")
+  // Warning
+  this.$noty.warning("Please review your information.")
 
-// Basic alert
-this.$noty.info("New version of the app is available!")
+  // Basic alert
+  this.$noty.info("New version of the app is available!")
 
-*/
+  */
   export default {
     components: {
       AppMemberBox : MemberBox
@@ -98,7 +99,7 @@ this.$noty.info("New version of the app is available!")
           this.token = response.body.auth_token;
           this.listJobs();
           this.listMembers();          
-          this.$noty.info("Usuário padrão foi autenticado.")
+          this.$noty.info("Usuário padrão foi autenticado com sucesso.")
         }, error => {
           this.$noty.warning("Não foi possível autenticar. Continue com a versão offline ou tente recarregar a pagina.")
         });
@@ -233,7 +234,7 @@ this.$noty.info("New version of the app is available!")
   mix-blend-mode: normal;
   opacity: 0.38;
 }
-input,select{
+input, ::placeholder,select{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -265,5 +266,19 @@ select {
 .submitContainer{
   text-align: right;
   margin-top: 30px;
+}
+.btn_primary_custom{
+  background: #5F7CBA;
+  box-shadow: 0px 1px 0px rgba(73, 32, 45, 0.12), inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  border: 0;
+  padding: 8px 16px 8px 16px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #FFFFFF;
 }
 </style>
