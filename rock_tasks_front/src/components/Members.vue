@@ -90,8 +90,12 @@
     mounted(){
       this.authenticate();
       $(this.$refs.modalMember).on("show.bs.modal", this.resetValidation)    
+      $(this.$refs.modalMember).on("hide.bs.modal", this.clearForm)    
     },
     methods: {
+      clearForm(){
+        this.newMember = {name: '',email: '',role_id: ''  }
+      },
       authenticate(){
         this.$http.post(this.path + 'authenticate',{
           email: 'admin@email.com', password: '123456'
@@ -136,7 +140,7 @@
         }
         this.$http.post(this.path + 'members',{member: this.newMember},this.headers).then(response => {
           this.listMembers();
-          this.newMember = {name: '',email: '',role_id: ''  }
+          this.clearForm();
           $('#modalMember').modal('hide');
           this.$noty.success("Membro cadastrado com sucesso.")
         }, error => {      
@@ -156,7 +160,7 @@
         }
         this.$http.put(this.path + 'members/'+this.edit_id,{member: this.newMember},this.headers).then(response => {
           this.listMembers();
-          this.newMember = {name: '',email: '',role_id: ''  }
+          this.clearForm();
           $('#modalMember').modal('hide');
           this.$noty.success("Membro editado com sucesso.")
         }, error => {      
@@ -234,7 +238,7 @@
   mix-blend-mode: normal;
   opacity: 0.38;
 }
-input, ::placeholder,select{
+input, select{
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -245,6 +249,14 @@ input, ::placeholder,select{
   background-color: inherit;
   border-bottom: 1px solid #ced4da;
   border-radius: 0;
+}
+input, ::placeholder,select{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #90A4AE;
 }
 select {
   -moz-appearance:none; /* Firefox */
