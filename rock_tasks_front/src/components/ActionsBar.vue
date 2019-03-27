@@ -16,6 +16,9 @@
 export default {
   methods: {
     novoMembro(){
+      $('#modalMember').attr('modo','new');
+      $('#modalMember .modal-title').text('Novo Membro');
+      $('#modalMember .btn').text('Criar Membro da Equipe');
       $("#modalMember").modal();
     }
   }

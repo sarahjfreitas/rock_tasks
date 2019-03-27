@@ -1,4 +1,4 @@
-#User.create(name: 'Admin', email: 'admin@email.com', password: '123456', password_confirmation: '123456')
+User.create(name: 'Admin', email: 'admin@email.com', password: '123456', password_confirmation: '123456')
 Role.find_or_create_by(name: 'Gerente')
 Role.find_or_create_by(name: 'Operador')
 Role.find_or_create_by(name: 'Analista')

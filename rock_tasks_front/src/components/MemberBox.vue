@@ -1,5 +1,5 @@
 <template>
-  <div class="memberBox">
+  <div class="memberBox" @click="fnEdit(member.id)">
     <div class="memberInfoBox">      
       <div class="avatar_container">
         <img src="../assets/default_avatar.png">
@@ -64,6 +64,6 @@
 
 <script>
 export default {
-  props: ['member']
+  props: {'member':Object, 'fnEdit' : Function}
 }
 </script>
