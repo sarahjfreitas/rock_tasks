@@ -1,0 +1,8 @@
+User.create(name: 'Admin', email: 'admin@email.com', password: '123456', password_confirmation: '123456')
+Role.find_or_create_by(name: 'Gerente')
+Role.find_or_create_by(name: 'Operador')
+Role.find_or_create_by(name: 'Analista')
+Member.find_or_create_by(name: 'Aline Costa de Oliveira', email: 'aline.costa@rockcontent.com', role_id: 1)
+Member.find_or_create_by(name: 'Bruno Pontes', email: 'bruno.pontes@rockcontent.com', role_id: 1)
+Member.find_or_create_by(name: 'Carla Alvez Martins', email: 'carla@rockcontent.com', role_id: 1)
+Member.find_or_create_by(name: 'Daniel Henrique Corrêa', email: 'daniel.henrique@rockcontent.com', role_id: 1)

@@ -1,0 +1,31 @@
+# Ignore bundler config.
+/rock_tasks_api/.bundle
+
+# Ignore the default SQLite database.
+/rock_tasks_api/db/*.sqlite3
+/rock_tasks_api/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/rock_tasks_api/log/*
+/rock_tasks_api/tmp/*
+!/rock_tasks_api/log/.keep
+!/rock_tasks_api/tmp/.keep
+
+# Ignore uploaded files in development
+/rock_tasks_api/storage/*
+!/rock_tasks_api/storage/.keep
+
+/rock_tasks_api/.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/rock_tasks_api/config/master.key
+
+#ignore documentarion folder
+/rock_tasks_api/doc/*
+
+
+/rock_tasks_front/node_modules/
+/rock_tasks_front/dist/
+/rock_tasks_front/npm-debug.log
+/rock_tasks_front/yarn-error.log
+
