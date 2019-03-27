@@ -1,10 +1,12 @@
-# rock_tasks_front
+## README
 
-> A Vue.js project
-
-## Build Setup
+## Configurando e iniciando o ambiente de desenvolvimento
 
 ``` bash
+
+#install node and npm
+sudo apt-get install nodejs npm
+
 # install dependencies
 npm install
 
@@ -13,6 +15,7 @@ npm run dev
 
 # build for production with minification
 npm run build
+
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+

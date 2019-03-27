@@ -44,3 +44,6 @@ gem 'simple_command'
 
 #midware to configure headers to enable cross request
 gem 'rack-cors'
+
+#spinner to show progress of dev tasks
+gem 'tty-spinner'
